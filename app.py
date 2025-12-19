@@ -7,7 +7,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# Your Novita AI API key
+
 NOVITA_API_KEY = os.getenv('NOVITA_API_KEY', 'sk_Tr_2i8fVyuTJNZDqhSP4McFT8Rz19pTJQ_WWOth4dNE')
 NOVITA_API_URL = "https://api.novita.ai/openai/chat/completions"
 
@@ -25,7 +25,7 @@ def generate_docs():
         if not code.strip():
             return jsonify({'error': 'Please paste some code'}), 400
         
-        # Create prompt for ERNIE
+        
         prompt = f"""You are a professional code documentation generator. 
         
 Generate comprehensive documentation for the following {language} code:
@@ -44,7 +44,7 @@ Provide documentation in the following format:
 
 Make it professional, clear, and concise."""
 
-        # Call Novita AI API
+        
         headers = {
             "Authorization": f"Bearer {NOVITA_API_KEY}",
             "Content-Type": "application/json"
@@ -84,8 +84,6 @@ Make it professional, clear, and concise."""
 def health():
     return jsonify({'status': 'ok'})
 
-# if __name__ == '__main__':
-#     app.run(debug=True, port=5000)
     
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
