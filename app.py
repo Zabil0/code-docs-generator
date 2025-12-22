@@ -8,7 +8,11 @@ load_dotenv()
 app = Flask(__name__)
 
 
-NOVITA_API_KEY = os.getenv('NOVITA_API_KEY', 'sk_Tr_2i8fVyuTJNZDqhSP4McFT8Rz19pTJQ_WWOth4dNE')
+NOVITA_API_KEY = os.getenv('NOVITA_API_KEY')
+
+if not NOVITA_API_KEY:
+    raise RuntimeError("NOVITA_API_KEY is not set")
+
 NOVITA_API_URL = "https://api.novita.ai/openai/chat/completions"
 
 @app.route('/')
